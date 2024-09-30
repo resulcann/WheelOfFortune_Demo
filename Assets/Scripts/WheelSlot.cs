@@ -10,6 +10,17 @@ public class WheelSlot : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _rewardMultiplierText; 
 
     private WheelItem _currentItem;
+    private bool _isBomb = false;
+    
+    public void SetBomb()
+    {
+        _isBomb = true;
+        _itemImage.sprite = WheelController.Instance.GetBombItem().ItemSprite;  // Bomba için özel bir görsel kullan
+        _rewardMultiplierText.text = "FAIL!";
+    }
+
+    public void SetNotBomb() => _isBomb = false;
+    public bool IsBomb() => _isBomb;
     
     public void SetRandomItem(List<WheelItem> items, WheelType type)
     {

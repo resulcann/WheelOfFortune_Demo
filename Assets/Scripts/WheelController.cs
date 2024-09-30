@@ -1,11 +1,13 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Resul.Helper;
 using TMPro;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class WheelController : MonoBehaviour
+public class WheelController : LocalSingleton<WheelController>
 {
     [Header("REFERENCES")]
     [SerializeField] private Button _spinBtn;
@@ -16,6 +18,7 @@ public class WheelController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _wheelNameText;
     [SerializeField] private TextMeshProUGUI _bottomLabelText;
     [SerializeField] private WheelTypeSettings[] _wheelTypeSettings;
+    [SerializeField] private WheelItem _bombItem;
 
     [Space] [Header("SETTINGS")] 
     [SerializeField] private int _fullTurnCount = 5;
@@ -28,21 +31,26 @@ public class WheelController : MonoBehaviour
     private WheelTypeSettings _currentWheelType;
     private int _spinCount = 0;
     private bool _isSpinning = false;
-    private bool _hasBombs = false;
+    private int _lastSelectedSlotIndex = 0;
+
+    public static event Action<int> OnSpinComplete;
 
     private void Start()
     {
+        LoadSpinCount();
         CalculateWheelLevel();
     }
 
     private void OnEnable()
     {
         _spinBtn.onClick.AddListener(SpinWheel);
+        OnSpinComplete += SpinResults;
     }
 
     private void OnDisable()
     {
         _spinBtn.onClick.RemoveListener(SpinWheel);
+        OnSpinComplete -= SpinResults;
     }
 
     private void SpinWheel()
@@ -66,32 +74,64 @@ public class WheelController : MonoBehaviour
                 _spinBtn.interactable = true;
                 IncreaseSpinCount(); // önce arttır sonra calculate yap
                 CalculateWheelLevel();
+                OnSpinComplete?.Invoke(CalculateSelectedSlot(totalAngle));
             });
     }
     
     private void SetItemsToSlots()
     {
-        foreach (var slot in _wheelSlots)
+        _wheelSlots.ForEach(slot =>  slot.SetNotBomb());
+        
+        if (_currentWheelType.WheelType is WheelType.Bronze)
         {
-            slot.SetRandomItem(_allWheelItems, _currentWheelType.WheelType);
+            var bombIndex = Random.Range(0, _wheelSlots.Count);  // Rastgele bir slot bomba yapılıyor.
+            for (var i = 0; i < _wheelSlots.Count; i++)
+            {
+                if (i == bombIndex)
+                {
+                    _wheelSlots[i].SetBomb();  // Slot'a bomba yerleştiriliyor.
+                }
+                else
+                {
+                    _wheelSlots[i].SetRandomItem(_allWheelItems, _currentWheelType.WheelType);
+                }
+            }
         }
+        else
+        {
+            // Silver ve Gold seviyelerinde Safe Zone (bomba yok)
+            foreach (var slot in _wheelSlots)
+            {
+                slot.SetRandomItem(_allWheelItems, _currentWheelType.WheelType);
+            }
+        }
+    }
+
+    private static int CalculateSelectedSlot(int angle)
+    {
+        var normalizedAngle = angle % 360;
+        
+        if (normalizedAngle < 0)
+        {
+            normalizedAngle += 360;
+        }
+        
+        var selectedSlotIndex = normalizedAngle / 45;
+        return selectedSlotIndex;
     }
 
     private void CalculateWheelLevel()
     {
         if (_spinCount % 30 == 0 && _spinCount != 0)
         {
-            _hasBombs = false;
             ChangeWheelType(_wheelTypeSettings[2]); // Gold Wheel
         }
         else if (_spinCount % 5 == 0 && _spinCount != 0)
         {
-            _hasBombs = false;
             ChangeWheelType(_wheelTypeSettings[1]); // Silver Wheel
         }
         else
         {
-            _hasBombs = true;
             ChangeWheelType(_wheelTypeSettings[0]); // Bronze Wheel
         }
 
@@ -113,7 +153,46 @@ public class WheelController : MonoBehaviour
     {
         _spinCount++;
         _spinCountText.text = $"SPIN COUNT: {_spinCount}";
+        SaveSpinCount();
     }
+    
+    private void LoadSpinCount()
+    {
+        _spinCount = PlayerPrefs.GetInt("SpinCount", 0);
+        _spinCountText.text = $"SPIN COUNT: {_spinCount}";
+    }
+    
+    private void SaveSpinCount()
+    {
+        PlayerPrefs.SetInt("SpinCount", _spinCount);
+        PlayerPrefs.Save();
+    }
+    
+    private void ResetSpinCount()
+    {
+        _spinCount = 0;
+        _spinCountText.text = $"SPIN COUNT: {_spinCount}";
+        SaveSpinCount();
+    }
+
+    private void SpinResults(int selectedSlotIndex)
+    {
+        // Eğer seçilen slot bir bombaysa
+        if (_wheelSlots[selectedSlotIndex].IsBomb())
+        {
+            //ShowFailPanel();  // Fail panelini göster
+            ResetSpinCount();  // Spin sayısını sıfırla
+            Debug.Log("BOMB EXPLODED!");
+        }
+        else
+        {
+            _spinCount++;  // Spin sayısını artır
+            SaveSpinCount();  // Yeni spin sayısını kaydet
+            Debug.Log("YOU ARE SAFE!");
+        }
+    }
+
+    public WheelItem GetBombItem() => _bombItem;
 }
 public enum WheelType { Bronze, Silver, Gold }
 
