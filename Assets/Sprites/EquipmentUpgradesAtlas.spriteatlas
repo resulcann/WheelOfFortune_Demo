@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: EquipmentUpgradesAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: c3e93530d9c6fae4985ef4b8425f835d, type: 3}
+    - {fileID: 2800000, guid: f6518d12896857048b8a366a2a90e497, type: 3}
+    - {fileID: 21300000, guid: f6518d12896857048b8a366a2a90e497, type: 3}
+    - {fileID: 2800000, guid: 294d1c18752ee0740aa62884fd7e93f9, type: 3}
+    - {fileID: 2800000, guid: 21ffa72f41980fd4ba330306eb4d0795, type: 3}
+    - {fileID: 2800000, guid: 73a00de26a57d21449bc88869392dd97, type: 3}
+    - {fileID: 2800000, guid: ad33526505a7b64409464379079b0952, type: 3}
+    - {fileID: 2800000, guid: 07eb74f6f5dfdd74ba04f27348a3e4b5, type: 3}
+    - {fileID: 2800000, guid: 1e1196ac79b24d540a40ecdd27f94797, type: 3}
+    - {fileID: 2800000, guid: ddc77bf2ea0c2b14f941e38d037d5eb7, type: 3}
+    - {fileID: 2800000, guid: 10743c2235cc92e4abcd7ce71c523d55, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: c3e93530d9c6fae4985ef4b8425f835d, type: 3}
+  - {fileID: 21300000, guid: f6518d12896857048b8a366a2a90e497, type: 3}
+  - {fileID: 21300000, guid: 10743c2235cc92e4abcd7ce71c523d55, type: 3}
+  - {fileID: 21300000, guid: 73a00de26a57d21449bc88869392dd97, type: 3}
+  - {fileID: 21300000, guid: ddc77bf2ea0c2b14f941e38d037d5eb7, type: 3}
+  - {fileID: 21300000, guid: ad33526505a7b64409464379079b0952, type: 3}
+  - {fileID: 21300000, guid: 07eb74f6f5dfdd74ba04f27348a3e4b5, type: 3}
+  - {fileID: 21300000, guid: 294d1c18752ee0740aa62884fd7e93f9, type: 3}
+  - {fileID: 21300000, guid: 1e1196ac79b24d540a40ecdd27f94797, type: 3}
+  - {fileID: 21300000, guid: 21ffa72f41980fd4ba330306eb4d0795, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - UI_Icons_Armor_Points
+  - UI_Icons_Knife_Points
+  - UI_Icons_Vest_Points
+  - UI_Icons_Rifle_Points
+  - UI_Icons_Submachine_Points
+  - UI_Icons_Shotgun_Points
+  - UI_Icons_SMG_Points
+  - UI_Icons_Pistol_Points
+  - UI_Icons_Sniper_Points
+  - UI_Icons_Pistol_Points_
+  m_RenderDataMap: {}
+  m_Tag: EquipmentUpgradesAtlas
+  m_IsVariant: 0
