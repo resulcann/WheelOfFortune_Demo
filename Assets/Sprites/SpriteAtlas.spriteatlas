@@ -106,6 +106,8 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 90e0a1d4ba0d418438d0e9684ddadbbb, type: 3}
     - {fileID: 2800000, guid: 5fef84385bb997c46b5a84ebc84c91c1, type: 3}
     - {fileID: 2800000, guid: c05bedc7e596909449abbe5307c6cd2c, type: 3}
+    - {fileID: 2800000, guid: e9575247997acda40afe88973c209f62, type: 3}
+    - {fileID: 2800000, guid: ccf44588d4471594696abde526ed99ac, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -135,10 +137,12 @@ SpriteAtlas:
   - {fileID: 21300000, guid: ee624356b2c92a44997bef295325fd51, type: 3}
   - {fileID: 21300000, guid: 8b869166400c1d04ca8baa57294ee12c, type: 3}
   - {fileID: 21300000, guid: 07eb74f6f5dfdd74ba04f27348a3e4b5, type: 3}
+  - {fileID: 21300000, guid: e9575247997acda40afe88973c209f62, type: 3}
   - {fileID: 21300000, guid: c05bedc7e596909449abbe5307c6cd2c, type: 3}
   - {fileID: 21300000, guid: 294d1c18752ee0740aa62884fd7e93f9, type: 3}
   - {fileID: 21300000, guid: 5fef84385bb997c46b5a84ebc84c91c1, type: 3}
   - {fileID: 21300000, guid: 7dbcec787c7de0b489b3d48e3f3581c6, type: 3}
+  - {fileID: 21300000, guid: ccf44588d4471594696abde526ed99ac, type: 3}
   - {fileID: 21300000, guid: 150fc5b816c419247855f1913b3ee576, type: 3}
   - {fileID: 21300000, guid: 507bddb890ae946458ae7e353c91297f, type: 3}
   - {fileID: 21300000, guid: 9550e829fa557664bbb49865bda404ff, type: 3}
@@ -197,10 +201,12 @@ SpriteAtlas:
   - ui_icon_baseball_cap_easter
   - ui_icon_aviator_glasses_easter
   - UI_Icons_SMG_Points
+  - trash-bin
   - ui_vfx_offer_shine
   - UI_Icons_Pistol_Points
   - ui_spin_silver_indicator
   - ui_card_panel_zone_current_white
+  - play-video-button-sprite
   - UI_Icon_Renders_tier2_mle
   - UI_button_grey_standard
   - ui_spin_bronze_base

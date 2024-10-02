@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Resul.Helper;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,32 +11,19 @@ public class WheelSlot : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _rewardMultiplierText; 
 
     private WheelItem _currentItem;
-    private bool _isBomb = false;
-    
-    public void SetBomb()
+    private int _rewardMultiplier = 0;
+
+    public void SetItem(WheelItem item)
     {
-        _isBomb = true;
-        _itemImage.sprite = WheelController.Instance.GetBombItem().ItemSprite;  // Bomba için özel bir görsel kullan
-        _rewardMultiplierText.text = "FAIL!";
+        _currentItem = item;
+        _itemImage.sprite = item.ItemSprite;
     }
 
-    public void SetNotBomb() => _isBomb = false;
-    public bool IsBomb() => _isBomb;
-    
-    public void SetRandomItem(List<WheelItem> items, WheelType type)
+    public void SetRewardMultiplication(int amount, WheelItem wheelItem)
     {
-        var filteredItems = items.FindAll(item => item.ItemLevel == type);
-        
-        if (filteredItems.Count > 0)
-        {
-            _currentItem = filteredItems[Random.Range(0, filteredItems.Count)];
-            
-            _itemImage.sprite = _currentItem.ItemSprite;
-            _rewardMultiplierText.text = "x" + _currentItem.RewardMultiplier.ToString();
-        }
-        else
-        {
-            Debug.LogWarning("Can't found any item on this level."); // Bu levelda bir eşya yoksa mesaj döndür.
-        }
+        _rewardMultiplier = amount;
+        _rewardMultiplierText.text = wheelItem.IsBomb ? $"FAIL!" : $"x{GameUtility.FormatFloatToReadableString(amount, true , false)}";
     }
+    public WheelItem GetItem() => _currentItem;
+    public int GetRewardMultiplier() => _rewardMultiplier;
 }

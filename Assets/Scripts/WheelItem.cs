@@ -5,8 +5,7 @@ public class WheelItem : ScriptableObject
 {
     [SerializeField] private string _itemName;  // Eşya ismi
     [SerializeField] private Sprite _itemSprite;  // Eşya görseli
-    [SerializeField] private WheelType _itemLevel;  // Eşya seviyesi (bronze, silver, gold)
-    [SerializeField] private int _rewardMultiplier;  // Ödül çarpanı
+    [SerializeField] private bool _isBomb = false;
 
     // Getter, Setters
     #region Fields 
@@ -23,17 +22,10 @@ public class WheelItem : ScriptableObject
         set => _itemSprite = value;
     }
     
-    public WheelType ItemLevel
+    public bool IsBomb
     {
-        get => _itemLevel;
-        set => _itemLevel = value;
+        get => _isBomb;
+        set => _isBomb = value;
     }
-    
-    public int RewardMultiplier
-    {
-        get => _rewardMultiplier;
-        set => _rewardMultiplier = value;
-    }
-
     #endregion 
 }
