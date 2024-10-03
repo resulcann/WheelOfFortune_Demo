@@ -1,18 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
+using Resul.Helper;
 using UnityEngine;
 
-public class UIManager : MonoBehaviour
+public class UIManager : LocalSingleton<UIManager>
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [Header("PANELS")] 
+    [SerializeField] private MenuPanel _menuPanel;
+    [SerializeField] private SpinPanel _spinPanel;
+    [SerializeField] private FailPanel _failPanel;
+    [SerializeField] private PrizePanel _prizePanel;
+    
+    
+    
 }

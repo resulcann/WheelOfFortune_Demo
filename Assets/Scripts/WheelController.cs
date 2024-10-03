@@ -25,7 +25,8 @@ public class WheelController : LocalSingleton<WheelController>
     private bool _isSpinning = false;
     private int _lastSelectedSlotIndex = 0;
 
-    public static event Action OnSpinComplete;
+    public static event Action OnSpinStarted;
+    public static event Action OnSpinCompleted;
 
     public void Init()
     {
@@ -49,6 +50,8 @@ public class WheelController : LocalSingleton<WheelController>
         if (_isSpinning) return;
         _isSpinning = true;
         _spinBtn.interactable = false;
+        
+        OnSpinStarted?.Invoke();
 
         // 45 in katı olan rastgele bir açı belirleniyor ( 45in katı olma sebebi slotların üzerine tam oturması için )
         var randomAngle = Random.Range(0, 8) * 45;
@@ -66,7 +69,7 @@ public class WheelController : LocalSingleton<WheelController>
                 CalculateSelectedSlot(totalAngle);
                 IncreaseSpinCount(); // önce arttır sonra spin türünü ayarla
                 SetWheel();
-                OnSpinComplete?.Invoke();
+                OnSpinCompleted?.Invoke();
             });
     }
 
@@ -155,4 +158,6 @@ public class WheelController : LocalSingleton<WheelController>
     }
 
     public int GetSpinCount() => _spinCount;
+    public bool IsSpinning() => _isSpinning;
+    public Spin GetCurrentSpin() => _currentSpin;
 }

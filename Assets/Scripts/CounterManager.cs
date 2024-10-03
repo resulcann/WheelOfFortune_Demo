@@ -20,12 +20,12 @@ public class CounterManager : LocalSingleton<CounterManager>
 
     private void OnEnable()
     {
-        WheelController.OnSpinComplete += UpdateCounters;
+        WheelController.OnSpinCompleted += UpdateCounters;
     }
 
     private void OnDisable()
     {
-        WheelController.OnSpinComplete -= UpdateCounters;
+        WheelController.OnSpinCompleted -= UpdateCounters;
     }
 
     private void UpdateCounters()
