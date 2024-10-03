@@ -66,9 +66,9 @@ public class WheelController : LocalSingleton<WheelController>
             {
                 _isSpinning = false;
                 _spinBtn.interactable = true;
-                CalculateSelectedSlot(totalAngle);
                 IncreaseSpinCount(); // önce arttır sonra spin türünü ayarla
                 SetWheel();
+                SpinResults(CalculateSelectedSlot(totalAngle));
                 OnSpinCompleted?.Invoke();
             });
     }
@@ -143,18 +143,27 @@ public class WheelController : LocalSingleton<WheelController>
 
     private void SpinResults(int selectedSlotIndex)
     {
-        // // Eğer seçilen slot bir bombaysa
-        // if (_wheelSlots[selectedSlotIndex].IsBomb())
-        // {
-        //     //ShowFailPanel();  // Fail panelini göster
-        //     ResetSpinCount();  // Spin sayısını sıfırla
-        //     Debug.Log("BOMB EXPLODED!");
-        // }
-        // else
-        // {
-        //     IncreaseSpinCount();
-        //     Debug.Log("YOU ARE SAFE!");
-        // }
+        var selectedSlotSettings = _currentSpin.GetWheelSlotSettingsByIndex(selectedSlotIndex); // seçilen slot settings
+        var selectedSlot = selectedSlotSettings.WheelSlot; // seçilen slot
+        var selectedItem = selectedSlot.GetItem(); // seçilen item
+        
+        // Eğer seçilen slot bir bombaysa
+        if (selectedItem.IsBomb)
+        {
+            //ShowFailPanel();  // Fail panelini göster
+            ResetSpinCount();  // Spin sayısını sıfırla
+            Debug.Log("BOMB EXPLODED! " + "Item Name: " + selectedItem.ItemName);
+        }
+        else if (selectedItem.ItemName.Equals("Cash"))
+        {
+            CurrencyManager.Instance.DealCurrency(selectedSlotSettings.GetTotalReward());
+            Debug.Log("YOU EARNED " + selectedItem.ItemName + "Amount: " + selectedSlotSettings.GetTotalReward());
+        }
+        else
+        {
+            IncreaseSpinCount();
+            Debug.Log("YOU ARE SAFE! " + "Item Name: " + selectedItem.ItemName);
+        }
     }
 
     public int GetSpinCount() => _spinCount;

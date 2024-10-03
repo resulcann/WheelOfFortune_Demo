@@ -3232,7 +3232,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -150.00002}
+  m_AnchoredPosition: {x: 0, y: -150}
   m_SizeDelta: {x: -50, y: -350.00003}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &678478332
@@ -4396,7 +4396,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -150.00002, y: 0}
+  m_AnchoredPosition: {x: -150.00003, y: 0}
   m_SizeDelta: {x: -300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1211792742
@@ -6727,6 +6727,34 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 15aaefbd83fc44e4a99a05d3470d8c3d, type: 2}
     - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
+      propertyPath: _wheelSlotsSettings.Array.data[1]._rewardAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
+      propertyPath: _wheelSlotsSettings.Array.data[2]._rewardAmount
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
+      propertyPath: _wheelSlotsSettings.Array.data[3]._rewardAmount
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
+      propertyPath: _wheelSlotsSettings.Array.data[4]._rewardAmount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
+      propertyPath: _wheelSlotsSettings.Array.data[5]._rewardAmount
+      value: 30000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
+      propertyPath: _wheelSlotsSettings.Array.data[6]._rewardAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
+      propertyPath: _wheelSlotsSettings.Array.data[7]._rewardAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
       propertyPath: _wheelSlotsSettings.Array.data[0]._rewardMultiplication
       value: 10
       objectReference: {fileID: 0}
@@ -6736,19 +6764,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
       propertyPath: _wheelSlotsSettings.Array.data[2]._rewardMultiplication
-      value: 200
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
       propertyPath: _wheelSlotsSettings.Array.data[3]._rewardMultiplication
-      value: 10000
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
       propertyPath: _wheelSlotsSettings.Array.data[4]._rewardMultiplication
-      value: 100
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
       propertyPath: _wheelSlotsSettings.Array.data[5]._rewardMultiplication
-      value: 300000
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
       propertyPath: _wheelSlotsSettings.Array.data[6]._rewardMultiplication
@@ -7957,10 +7985,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 61.5
-  m_fontSizeBase: 50
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 80
   m_fontStyle: 1
@@ -8261,12 +8289,44 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 62c650e8a2073d442a6b9e50723eac17, type: 2}
     - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
+      propertyPath: _wheelSlotsSettings.Array.data[0]._rewardAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
+      propertyPath: _wheelSlotsSettings.Array.data[1]._rewardAmount
+      value: 50000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
+      propertyPath: _wheelSlotsSettings.Array.data[2]._rewardAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
+      propertyPath: _wheelSlotsSettings.Array.data[3]._rewardAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
+      propertyPath: _wheelSlotsSettings.Array.data[4]._rewardAmount
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
+      propertyPath: _wheelSlotsSettings.Array.data[5]._rewardAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
+      propertyPath: _wheelSlotsSettings.Array.data[6]._rewardAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
+      propertyPath: _wheelSlotsSettings.Array.data[7]._rewardAmount
+      value: 15000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
       propertyPath: _wheelSlotsSettings.Array.data[0]._rewardMultiplication
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
       propertyPath: _wheelSlotsSettings.Array.data[1]._rewardMultiplication
-      value: 150000
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
       propertyPath: _wheelSlotsSettings.Array.data[2]._rewardMultiplication
@@ -8278,7 +8338,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
       propertyPath: _wheelSlotsSettings.Array.data[4]._rewardMultiplication
-      value: 100
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
       propertyPath: _wheelSlotsSettings.Array.data[5]._rewardMultiplication
@@ -8290,7 +8350,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
       propertyPath: _wheelSlotsSettings.Array.data[7]._rewardMultiplication
-      value: 50000
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7476022731288166561, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
       propertyPath: m_text
@@ -8565,11 +8625,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 855529729484983597, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
       propertyPath: m_text
-      value: x60
+      value: x3
       objectReference: {fileID: 0}
     - target: {fileID: 855529729662449216, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
       propertyPath: m_text
-      value: x10K
+      value: x3
       objectReference: {fileID: 0}
     - target: {fileID: 855529729892661679, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
       propertyPath: m_text
@@ -8720,8 +8780,36 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 68d42a86204db174bbdd729a598e2286, type: 2}
     - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
+      propertyPath: _wheelSlotsSettings.Array.data[0]._rewardAmount
+      value: 15000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
+      propertyPath: _wheelSlotsSettings.Array.data[1]._rewardAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
+      propertyPath: _wheelSlotsSettings.Array.data[2]._rewardAmount
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
+      propertyPath: _wheelSlotsSettings.Array.data[3]._rewardAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
+      propertyPath: _wheelSlotsSettings.Array.data[5]._rewardAmount
+      value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
+      propertyPath: _wheelSlotsSettings.Array.data[6]._rewardAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
+      propertyPath: _wheelSlotsSettings.Array.data[7]._rewardAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
       propertyPath: _wheelSlotsSettings.Array.data[0]._rewardMultiplication
-      value: 50000
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
       propertyPath: _wheelSlotsSettings.Array.data[1]._rewardMultiplication
@@ -8729,7 +8817,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
       propertyPath: _wheelSlotsSettings.Array.data[2]._rewardMultiplication
-      value: 60
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
       propertyPath: _wheelSlotsSettings.Array.data[3]._rewardMultiplication
@@ -8737,11 +8825,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
       propertyPath: _wheelSlotsSettings.Array.data[4]._rewardMultiplication
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
       propertyPath: _wheelSlotsSettings.Array.data[5]._rewardMultiplication
-      value: 10000
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3391050030351613816, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
       propertyPath: _wheelSlotsSettings.Array.data[6]._rewardMultiplication
@@ -8753,7 +8841,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7476022731288166561, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
       propertyPath: m_text
-      value: x50K
+      value: x3
       objectReference: {fileID: 0}
     - target: {fileID: 8063546429051290122, guid: 7e6717eb11b14f940bbde353a0e16941, type: 3}
       propertyPath: m_SizeDelta.y

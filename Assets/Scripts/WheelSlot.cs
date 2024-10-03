@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class WheelSlot : MonoBehaviour
 {
-    [Header("REFERENCES")]
+    [Space] [Header("REFERENCES")]
     [SerializeField] private Image _itemImage;
     [SerializeField] private TextMeshProUGUI _rewardMultiplierText; 
 
@@ -24,6 +24,7 @@ public class WheelSlot : MonoBehaviour
         _rewardMultiplier = amount;
         _rewardMultiplierText.text = wheelItem.IsBomb ? $"FAIL!" : $"x{GameUtility.FormatFloatToReadableString(amount, true , false)}";
     }
+    
     public WheelItem GetItem() => _currentItem;
     public int GetRewardMultiplier() => _rewardMultiplier;
 }
