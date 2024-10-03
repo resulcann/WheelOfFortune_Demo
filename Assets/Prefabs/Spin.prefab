@@ -61,9 +61,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -222,20 +222,28 @@ MonoBehaviour:
   _wheelSlotsSettings:
   - _wheelSlot: {fileID: 2201003380423194240}
     _wheelItem: {fileID: 11400000, guid: 4a1fb41235dbf604f9d9669b372e4155, type: 2}
+    _rewardMultiplication: 0
   - _wheelSlot: {fileID: 8256452956164476640}
     _wheelItem: {fileID: 11400000, guid: 1e61532a3de3d024c97fd9b4ec90d0ac, type: 2}
+    _rewardMultiplication: 0
   - _wheelSlot: {fileID: 8256452957225007884}
     _wheelItem: {fileID: 11400000, guid: 83155e2169213a24d91af818a8645b74, type: 2}
+    _rewardMultiplication: 0
   - _wheelSlot: {fileID: 8256452956739874229}
     _wheelItem: {fileID: 11400000, guid: 68d42a86204db174bbdd729a598e2286, type: 2}
+    _rewardMultiplication: 0
   - _wheelSlot: {fileID: 8256452956075643633}
     _wheelItem: {fileID: 11400000, guid: 15aaefbd83fc44e4a99a05d3470d8c3d, type: 2}
+    _rewardMultiplication: 0
   - _wheelSlot: {fileID: 8256452957423485025}
     _wheelItem: {fileID: 11400000, guid: 5885a4909a5d19e41841b79e6afe5c13, type: 2}
+    _rewardMultiplication: 0
   - _wheelSlot: {fileID: 8256452955957215313}
     _wheelItem: {fileID: 11400000, guid: 4a1fb41235dbf604f9d9669b372e4155, type: 2}
+    _rewardMultiplication: 0
   - _wheelSlot: {fileID: 8256452957653569422}
     _wheelItem: {fileID: 11400000, guid: 15aaefbd83fc44e4a99a05d3470d8c3d, type: 2}
+    _rewardMultiplication: 0
 --- !u!1 &3391050031067356726
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,7 +301,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2652652927740725463, guid: ad1319e0d5bd0b54daf5b586c9b85c27, type: 3}
       propertyPath: m_text
-      value: x 5
+      value: x0
       objectReference: {fileID: 0}
     - target: {fileID: 2652652927740725463, guid: ad1319e0d5bd0b54daf5b586c9b85c27, type: 3}
       propertyPath: m_sharedMaterial
@@ -422,7 +430,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2652652927740725463, guid: ad1319e0d5bd0b54daf5b586c9b85c27, type: 3}
       propertyPath: m_text
-      value: x 5
+      value: x0
       objectReference: {fileID: 0}
     - target: {fileID: 2652652927740725463, guid: ad1319e0d5bd0b54daf5b586c9b85c27, type: 3}
       propertyPath: m_sharedMaterial
@@ -551,7 +559,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2652652927740725463, guid: ad1319e0d5bd0b54daf5b586c9b85c27, type: 3}
       propertyPath: m_text
-      value: x 3
+      value: x0
       objectReference: {fileID: 0}
     - target: {fileID: 2652652927740725463, guid: ad1319e0d5bd0b54daf5b586c9b85c27, type: 3}
       propertyPath: m_sharedMaterial
@@ -680,7 +688,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2652652927740725463, guid: ad1319e0d5bd0b54daf5b586c9b85c27, type: 3}
       propertyPath: m_text
-      value: x 3
+      value: x0
       objectReference: {fileID: 0}
     - target: {fileID: 2652652927740725463, guid: ad1319e0d5bd0b54daf5b586c9b85c27, type: 3}
       propertyPath: m_sharedMaterial
@@ -809,7 +817,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2652652927740725463, guid: ad1319e0d5bd0b54daf5b586c9b85c27, type: 3}
       propertyPath: m_text
-      value: x 5
+      value: x0
       objectReference: {fileID: 0}
     - target: {fileID: 2652652927740725463, guid: ad1319e0d5bd0b54daf5b586c9b85c27, type: 3}
       propertyPath: m_sharedMaterial
@@ -1433,7 +1441,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2652652927740725463, guid: ad1319e0d5bd0b54daf5b586c9b85c27, type: 3}
       propertyPath: m_text
-      value: x 5
+      value: x0
       objectReference: {fileID: 0}
     - target: {fileID: 2652652927740725463, guid: ad1319e0d5bd0b54daf5b586c9b85c27, type: 3}
       propertyPath: m_sharedMaterial
@@ -1566,7 +1574,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2652652927740725463, guid: ad1319e0d5bd0b54daf5b586c9b85c27, type: 3}
       propertyPath: m_text
-      value: x 5
+      value: x0
       objectReference: {fileID: 0}
     - target: {fileID: 3240144329489468028, guid: ad1319e0d5bd0b54daf5b586c9b85c27, type: 3}
       propertyPath: m_SizeDelta.y

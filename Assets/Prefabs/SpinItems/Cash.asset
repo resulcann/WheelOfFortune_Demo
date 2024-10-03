@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: Cash
   m_EditorClassIdentifier: 
   _itemName: Cash
-  _itemSprite: {fileID: 21300000, guid: ea8a3d8dec2f4924c904df281795f74a, type: 3}
-  _rewardMultiplier: 3
+  _itemSprite: {fileID: -1415858775324194011, guid: 8be1667f4a6db7f4ca44d46c1108a749, type: 3}
   _isBomb: 0

@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd4b7fe89e157bd4c90ac4ca521f8427, type: 3}
   m_Name: Gold
   m_EditorClassIdentifier: 
-  _itemName: Coin
-  _itemSprite: {fileID: 21300000, guid: baf8aa8f9ec729441a7ee3029c65f193, type: 3}
-  _rewardMultiplier: 3
+  _itemName: Gold
+  _itemSprite: {fileID: 8983911766006163965, guid: 8be1667f4a6db7f4ca44d46c1108a749, type: 3}
   _isBomb: 0

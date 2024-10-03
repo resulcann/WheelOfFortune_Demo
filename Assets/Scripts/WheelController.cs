@@ -12,7 +12,6 @@ public class WheelController : LocalSingleton<WheelController>
     [Header("REFERENCES")] 
     [SerializeField] private Spin[] _spins;
     [SerializeField] private Button _spinBtn;
-    [SerializeField] private TextMeshProUGUI _spinCountText;
     [SerializeField] private TextMeshProUGUI _spinCostText;
     [SerializeField] private TextMeshProUGUI _wheelNameText;
     [SerializeField] private TextMeshProUGUI _bottomLabelText;
@@ -26,24 +25,23 @@ public class WheelController : LocalSingleton<WheelController>
     private bool _isSpinning = false;
     private int _lastSelectedSlotIndex = 0;
 
-    public static event Action<int> OnSpinComplete;
+    public static event Action OnSpinComplete;
 
-    private void Start()
+    public void Init()
     {
         LoadSpinCount();
+        CounterManager.Instance.Init();
         SetWheel();
     }
 
     private void OnEnable()
     {
         _spinBtn.onClick.AddListener(Spin);
-        OnSpinComplete += SpinResults;
     }
 
     private void OnDisable()
     {
         _spinBtn.onClick.RemoveListener(Spin);
-        OnSpinComplete -= SpinResults;
     }
 
     private void Spin()
@@ -65,9 +63,10 @@ public class WheelController : LocalSingleton<WheelController>
             {
                 _isSpinning = false;
                 _spinBtn.interactable = true;
-                OnSpinComplete?.Invoke(CalculateSelectedSlot(totalAngle));
+                CalculateSelectedSlot(totalAngle);
                 IncreaseSpinCount(); // önce arttır sonra spin türünü ayarla
                 SetWheel();
+                OnSpinComplete?.Invoke();
             });
     }
 
@@ -119,14 +118,12 @@ public class WheelController : LocalSingleton<WheelController>
     private void IncreaseSpinCount()
     {
         _spinCount++;
-        _spinCountText.text = $"SPIN COUNT: {_spinCount}";
         SaveSpinCount();
     }
     
     private void LoadSpinCount()
     {
         _spinCount = PlayerPrefs.GetInt("SpinCount", 0);
-        _spinCountText.text = $"SPIN COUNT: {_spinCount}";
     }
     
     private void SaveSpinCount()
@@ -138,7 +135,6 @@ public class WheelController : LocalSingleton<WheelController>
     private void ResetSpinCount()
     {
         _spinCount = 0;
-        _spinCountText.text = $"SPIN COUNT: {_spinCount}";
         SaveSpinCount();
     }
 
@@ -157,4 +153,6 @@ public class WheelController : LocalSingleton<WheelController>
         //     Debug.Log("YOU ARE SAFE!");
         // }
     }
+
+    public int GetSpinCount() => _spinCount;
 }
