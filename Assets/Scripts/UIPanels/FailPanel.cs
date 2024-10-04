@@ -1,53 +1,41 @@
 using System;
+using Resul.Helper;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class FailPanel : MonoBehaviour , IPanel
 {
+    [SerializeField] private GameObject _innerPanel;
     [SerializeField] private Button _giveUpBtn;
     [SerializeField] private Button _reviveWithMoneyBtn;
     [SerializeField] private Button _reviveWithAdsBtn;
+    [SerializeField] private TextMeshProUGUI _reviveWithMoneyText;
     [SerializeField] private GameObject _toppomBar;
+
+    public void Init()
+    {
+        UpdateReviveCostText();
+        WheelController.OnSpinCompleted += UpdateReviveCostText;
+        
+        _giveUpBtn?.onClick.AddListener(GiveUpButton_OnClick);
+        _reviveWithMoneyBtn?.onClick.AddListener(ReviveWithMoneyButton_OnClick);
+        _reviveWithAdsBtn?.onClick.AddListener(ReviveWithAdsButton_OnClick);
+    }
     
-    private bool _isOpen = false;
-    public static event Action OnFailOpen;
-
-    private void Start()
+    public void OnDestroyProcess()
     {
-        CheckIsOpen();
+        WheelController.OnSpinCompleted -= UpdateReviveCostText;
+        
+        _giveUpBtn?.onClick.RemoveListener(GiveUpButton_OnClick);
+        _reviveWithMoneyBtn?.onClick.RemoveListener(ReviveWithMoneyButton_OnClick);
+        _reviveWithAdsBtn?.onClick.RemoveListener(ReviveWithAdsButton_OnClick);
     }
-
-    private void OnEnable()
-    {
-        _giveUpBtn.onClick.AddListener(GiveUpButton_OnClick);
-        _reviveWithMoneyBtn.onClick.AddListener(ReviveWithMoneyButton_OnClick);
-        _reviveWithAdsBtn.onClick.AddListener(ReviveWithAdsButton_OnClick);
-    }
-
-    private void OnDisable()
-    {
-        _giveUpBtn.onClick.RemoveListener(GiveUpButton_OnClick);
-        _reviveWithMoneyBtn.onClick.RemoveListener(ReviveWithMoneyButton_OnClick);
-        _reviveWithAdsBtn.onClick.RemoveListener(ReviveWithAdsButton_OnClick);
-    }
-
-    public void Toggle()
-    {
-        gameObject.SetActive(!_isOpen);
-        _toppomBar.gameObject.SetActive(_isOpen);
-        _isOpen = !_isOpen;
-    }
-
-    private void CheckIsOpen()
-    {
-        _isOpen = gameObject.activeInHierarchy;
-    }
-
+    
     private void GiveUpButton_OnClick()
     {
         GameManager.Instance.DiscardAllEarnings();
-        Toggle();
-        UIManager.Instance.GetMenuPanel().Toggle();
+        UIManager.Instance.Open_MenuPanel();
     }
     private void ReviveWithMoneyButton_OnClick()
     {
@@ -56,5 +44,21 @@ public class FailPanel : MonoBehaviour , IPanel
     private void ReviveWithAdsButton_OnClick()
     {
         GameManager.Instance.Revive(true);
+    }
+    public void OpenPanel()
+    {
+        _innerPanel.SetActive(true);
+        _toppomBar.SetActive(false);
+    }
+
+    public void ClosePanel()
+    {
+        _innerPanel.SetActive(false);
+        _toppomBar.SetActive(true);   
+    }
+
+    public void UpdateReviveCostText()
+    {
+        _reviveWithMoneyText.text = GameUtility.FormatFloatToReadableString(GameManager.Instance.GetReviveCost());
     }
 }

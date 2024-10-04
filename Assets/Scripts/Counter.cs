@@ -16,7 +16,7 @@ public class Counter : MonoBehaviour
     private int _value;
     private Tween _punchTween;
 
-    private void Start()
+    public void Init()
     {
         LoadValue();
     }

@@ -23,6 +23,7 @@ public class CurrencyManager : LocalSingleton<CurrencyManager>
     public void DealCurrency(float value)
     {
         _currency += value;
+        _currency = Mathf.Max(_currency, 0);
         UpdateCurrencyPanel();
         Save();
     }

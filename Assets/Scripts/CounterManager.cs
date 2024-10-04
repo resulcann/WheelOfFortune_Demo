@@ -15,22 +15,22 @@ public class CounterManager : LocalSingleton<CounterManager>
     private Coroutine _punchAnimationCor;
     public void Init()
     {
+        _counters.ForEach(c => c.Init());
         UpdateCountersWithoutPunch();
     }
 
-    private void OnEnable()
+    private void Start()
     {
         WheelController.OnSpinCompleted += UpdateCounters;
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         WheelController.OnSpinCompleted -= UpdateCounters;
     }
 
     public void UpdateCounters()
     {
-        // Punch Animation ile senkronize olarak her bir sayacın değerini güncelle
         if (_punchAnimationCor != null) StopCoroutine(_punchAnimationCor);
         _punchAnimationCor = StartCoroutine(UpdateCountersWithPunch(0.35f, 0.1f));
     }

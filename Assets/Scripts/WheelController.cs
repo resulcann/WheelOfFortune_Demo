@@ -21,12 +21,11 @@ public class WheelController : LocalSingleton<WheelController>
     [SerializeField] private float _spinDuration = 5f;
 
     [Space] 
-    [SerializeField] private List<WheelItem> _earnedItems;
+    [SerializeField] private List<WheelItem> _earnedItems = new();
     
     private Spin _currentSpin;
     private int _spinCount = 0;
     private bool _isSpinning = false;
-    private int _lastSelectedSlotIndex = 0;
 
     public static event Action OnSpinStarted;
     public static event Action OnSpinCompleted;
@@ -35,15 +34,15 @@ public class WheelController : LocalSingleton<WheelController>
     {
         LoadSpinCount();
         CounterManager.Instance.Init();
-        SetWheel();
+        SetSpinType();
     }
 
-    private void OnEnable()
+    private void Start()
     {
         _spinBtn.onClick.AddListener(Spin);
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         _spinBtn.onClick.RemoveListener(Spin);
     }
@@ -70,7 +69,7 @@ public class WheelController : LocalSingleton<WheelController>
                 _isSpinning = false;
                 _spinBtn.interactable = true;
                 SpinResults(CalculateSelectedSlot(totalAngle));
-                SetWheel();
+                SetSpinType();
                 OnSpinCompleted?.Invoke();
             });
     }
@@ -88,7 +87,7 @@ public class WheelController : LocalSingleton<WheelController>
         return selectedSlotIndex;
     }
 
-    private void SetWheel()
+    public void SetSpinType()
     {
         if (_spinCount % 30 == 0 && _spinCount != 0)
         {
@@ -123,6 +122,7 @@ public class WheelController : LocalSingleton<WheelController>
     private void IncreaseSpinCount()
     {
         _spinCount++;
+        
         SaveSpinCount();
     }
     
@@ -173,8 +173,8 @@ public class WheelController : LocalSingleton<WheelController>
             GameManager.Instance.AddEarnedItem(selectedItem);
             Debug.Log("YOU EARNED AN ITEM! " + "Item Name: " + selectedItem.ItemName);
         }
-        
         IncreaseSpinCount();
+        GameManager.Instance.GetPrize(selectedSlotSettings);
     }
 
     public List<WheelItem> GetAllEarnedItems() => _earnedItems;

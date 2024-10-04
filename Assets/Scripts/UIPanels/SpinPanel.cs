@@ -1,54 +1,55 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class SpinPanel : MonoBehaviour, IPanel
 {
+    [SerializeField] private GameObject _innerPanel;
     [SerializeField] private MenuPanel _menuPanel;
     [SerializeField] private Button _menuBtn;
-    [SerializeField] private Button _clamAllBtn;
-    
-    private bool _isOpen = false;
+    [SerializeField] private Button _claimAllBtn;
 
-    private void Start()
+    public void Init()
     {
-        CheckIsOpen();
-    }
-
-    private void OnEnable()
-    {
-        _menuBtn.onClick.AddListener(Toggle);
-        _menuBtn.onClick.AddListener(_menuPanel.Toggle);
+        _menuBtn.onClick.AddListener(MenuButton_OnClick);
+        _claimAllBtn.onClick.AddListener(ClaimButton_OnClick);
+        
         WheelController.OnSpinStarted += CheckMenuButtonVisibility;
         WheelController.OnSpinCompleted += CheckMenuButtonVisibility;
     }
-
-    private void OnDisable()
+    
+    public void OnDestroyProcess()
     {
-        _menuBtn.onClick.RemoveListener(Toggle);
-        _menuBtn.onClick.RemoveListener(_menuPanel.Toggle);
+        _menuBtn.onClick.RemoveListener(MenuButton_OnClick);
+        _claimAllBtn?.onClick.RemoveListener(ClaimButton_OnClick);
+        
         WheelController.OnSpinStarted -= CheckMenuButtonVisibility;
         WheelController.OnSpinCompleted -= CheckMenuButtonVisibility;
-    }
-
-    public void Toggle()
-    {
-        gameObject.SetActive(!_isOpen);
-        _isOpen = !_isOpen;
-    }
-
-    private void CheckIsOpen()
-    {
-        _isOpen = gameObject.activeInHierarchy;
     }
 
     private void CheckMenuButtonVisibility()
     {
         _menuBtn.gameObject.SetActive(WheelController.Instance.GetSpinCount() == 0 && !WheelController.Instance.IsSpinning());
-        _clamAllBtn.gameObject.SetActive((WheelController.Instance.GetCurrentSpin().SpinType != SpinType.Bronze 
+        _claimAllBtn.gameObject.SetActive((WheelController.Instance.GetCurrentSpin().SpinType != SpinType.Bronze 
                                          && GameManager.Instance.GetEarnedItemList().Count > 0)
                                          && !WheelController.Instance.IsSpinning());
     }
+
+    private void MenuButton_OnClick()
+    {
+        UIManager.Instance.Open_MenuPanel();
+    }
+
+    private void ClaimButton_OnClick()
+    {
+        GameManager.Instance.ClaimAllEarnings();
+    }
+
+    public void OpenPanel()
+    {
+        _innerPanel.SetActive(true);
+        CheckMenuButtonVisibility();
+    }
+
+    public void ClosePanel() => _innerPanel.SetActive(false);
 }

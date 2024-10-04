@@ -1,4 +1,5 @@
 public interface IPanel
 {
-    public void Toggle();
+    public void OpenPanel();
+    public void ClosePanel();
 }

@@ -1,24 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
+using Resul.Helper;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PrizePanel : MonoBehaviour, IPanel
 {
-    private bool _isOpen = false;
+    [Header("REFERENCES")] 
+    [SerializeField] private GameObject _innerPanel;
+    [SerializeField] private Image _rewardItemImage;
+    [SerializeField] private TextMeshProUGUI _itemNameText;
+    [SerializeField] private TextMeshProUGUI _rewardCountText;
+    [SerializeField] private Button _nextBtn;
 
-    private void Start()
+    public void Init()
     {
-        CheckIsOpen();
+        _nextBtn.onClick.AddListener(UIManager.Instance.Open_SpinPanel);
     }
-
-    public void Toggle()
+    
+    public void OnDestroyProcess()
     {
-        gameObject.SetActive(!_isOpen);
-        _isOpen = !_isOpen;
+        _nextBtn.onClick.RemoveListener(UIManager.Instance.Open_SpinPanel);
     }
-
-    private void CheckIsOpen()
+    
+    public void SetPrizeCard(WheelItem item, int rewardAmount, bool isCash)
     {
-        _isOpen = gameObject.activeInHierarchy;
+        _itemNameText.text = item.ItemName;
+        _rewardItemImage.sprite = item.ItemSprite;
+        _rewardCountText.text = isCash ? GameUtility.FormatFloatToReadableString(rewardAmount)
+                                        : $"x{GameUtility.FormatFloatToReadableString(rewardAmount)}";
     }
+    public void OpenPanel() => _innerPanel.SetActive(true);
+    public void ClosePanel() => _innerPanel.SetActive(false);
 }
