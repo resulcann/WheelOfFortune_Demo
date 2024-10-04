@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,10 +16,15 @@ public class Spin : MonoBehaviour
     
     private void OnValidate()
     {
+        SetItems();
+    }
+
+    private void SetItems()
+    {
         foreach (var slotSetting in _wheelSlotsSettings)
         {
             slotSetting.WheelSlot?.SetItem(slotSetting.WheelItem);
-            slotSetting.WheelSlot?.SetRewardMultiplication(slotSetting.RewardMultiplication, slotSetting.WheelItem);   
+            slotSetting.WheelSlot?.SetRewardMultiplication(slotSetting.GetTotalReward(), slotSetting.WheelItem);   
         }
     }
     public Transform GetSpinImageTransform() => _spinImageTransform;

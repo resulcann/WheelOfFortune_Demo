@@ -8,6 +8,7 @@ public class SpinPanel : MonoBehaviour, IPanel
 {
     [SerializeField] private MenuPanel _menuPanel;
     [SerializeField] private Button _menuBtn;
+    [SerializeField] private Button _clamAllBtn;
     
     private bool _isOpen = false;
 
@@ -45,7 +46,9 @@ public class SpinPanel : MonoBehaviour, IPanel
 
     private void CheckMenuButtonVisibility()
     {
-        _menuBtn.gameObject.SetActive( (WheelController.Instance.GetSpinCount() == 0 || WheelController.Instance.GetCurrentSpin().SpinType != SpinType.Bronze )
-                                      && !WheelController.Instance.IsSpinning());
+        _menuBtn.gameObject.SetActive(WheelController.Instance.GetSpinCount() == 0 && !WheelController.Instance.IsSpinning());
+        _clamAllBtn.gameObject.SetActive((WheelController.Instance.GetCurrentSpin().SpinType != SpinType.Bronze 
+                                         && GameManager.Instance.GetEarnedItemList().Count > 0)
+                                         && !WheelController.Instance.IsSpinning());
     }
 }

@@ -28,18 +28,19 @@ public class CounterManager : LocalSingleton<CounterManager>
         WheelController.OnSpinCompleted -= UpdateCounters;
     }
 
-    private void UpdateCounters()
+    public void UpdateCounters()
     {
         // Punch Animation ile senkronize olarak her bir sayacın değerini güncelle
         if (_punchAnimationCor != null) StopCoroutine(_punchAnimationCor);
         _punchAnimationCor = StartCoroutine(UpdateCountersWithPunch(0.35f, 0.1f));
     }
 
-    private void UpdateCountersWithoutPunch()
+    public void UpdateCountersWithoutPunch()
     {
+        var spinCount = WheelController.Instance.GetSpinCount();
         for (var i = 0; i < _counters.Count; i++)
         {
-            var value = WheelController.Instance.GetSpinCount() - 2 + i;
+            var value = spinCount - 2 + i;
             if (value >= 0)
             {
                 _counters[i].SetValue(value);
@@ -48,31 +49,33 @@ public class CounterManager : LocalSingleton<CounterManager>
             {
                 _counters[i].SetValue(-1);
             }
-            _counters[i].UpdateDisplay();
+            _counters[i].UpdateDisplay(); 
         }
     }
 
     private IEnumerator UpdateCountersWithPunch(float punchValue = 0.25f, float dur = 0.25f)
     {
+        var spinCount = WheelController.Instance.GetSpinCount(); 
         for (var i = 0; i < _counters.Count; i++)
         {
-            var value = WheelController.Instance.GetSpinCount() - 2 + i;
+            var value = spinCount - 2 + i;
             if (value >= 0)
             {
                 _counters[i].SetValue(value);
             }
             else
             {
-                _counters[i].SetValue(-1);  // Boş göster
+                _counters[i].SetValue(-1); 
             }
 
-            _counters[i].UpdateDisplay();  // Değeri güncelle
-            _counters[i].Punch(punchValue, dur);  // Punch efektini başlat
+            _counters[i].UpdateDisplay();
+            _counters[i].Punch(punchValue, dur);
 
-            yield return new WaitForSeconds(dur / 2);  // Her punch arasına bekleme süresi koy
+            yield return new WaitForSeconds(dur / 2);
         }
     }
 
+    public void ResetAllCountersValues() => _counters.ForEach(c => c.ResetValue());
     public List<Counter> GetCounters() => _counters;
     public Color GetBronzeColor() => _bronzeColor;
     public Color GetSilverColor() => _silverColor;

@@ -19,6 +19,9 @@ public class WheelController : LocalSingleton<WheelController>
     [Space] [Header("SETTINGS")] 
     [SerializeField] private int _fullTurnCount = 5;
     [SerializeField] private float _spinDuration = 5f;
+
+    [Space] 
+    [SerializeField] private List<WheelItem> _earnedItems;
     
     private Spin _currentSpin;
     private int _spinCount = 0;
@@ -66,9 +69,8 @@ public class WheelController : LocalSingleton<WheelController>
             {
                 _isSpinning = false;
                 _spinBtn.interactable = true;
-                IncreaseSpinCount(); // önce arttır sonra spin türünü ayarla
-                SetWheel();
                 SpinResults(CalculateSelectedSlot(totalAngle));
+                SetWheel();
                 OnSpinCompleted?.Invoke();
             });
     }
@@ -135,9 +137,10 @@ public class WheelController : LocalSingleton<WheelController>
         PlayerPrefs.Save();
     }
     
-    private void ResetSpinCount()
+    public void ResetSpinCount()
     {
         _spinCount = 0;
+        CounterManager.Instance.ResetAllCountersValues();
         SaveSpinCount();
     }
 
@@ -150,22 +153,34 @@ public class WheelController : LocalSingleton<WheelController>
         // Eğer seçilen slot bir bombaysa
         if (selectedItem.IsBomb)
         {
-            //ShowFailPanel();  // Fail panelini göster
-            ResetSpinCount();  // Spin sayısını sıfırla
+            CounterManager.Instance.UpdateCountersWithoutPunch();
+            GameManager.Instance.Fail();  // Fail, bütün kazanılan eşyalar kaybedilir ve spin count 0 olur.
             Debug.Log("BOMB EXPLODED! " + "Item Name: " + selectedItem.ItemName);
+            return;
         }
-        else if (selectedItem.ItemName.Equals("Cash"))
+        
+        if (selectedItem.ItemName.Equals("Cash"))
         {
-            CurrencyManager.Instance.DealCurrency(selectedSlotSettings.GetTotalReward());
-            Debug.Log("YOU EARNED " + selectedItem.ItemName + "Amount: " + selectedSlotSettings.GetTotalReward());
+            // Cash kazandığında, GameManager üzerinden para eklenir
+            var earnedMoney = selectedSlotSettings.GetTotalReward();
+            GameManager.Instance.AddEarnedCash(earnedMoney);
+            Debug.Log("YOU EARNED " + earnedMoney + " Cash");
+            
         }
         else
         {
-            IncreaseSpinCount();
-            Debug.Log("YOU ARE SAFE! " + "Item Name: " + selectedItem.ItemName);
+            // Eşya kazanıldığında GameManager üzerinden item eklenir
+            GameManager.Instance.AddEarnedItem(selectedItem);
+            Debug.Log("YOU EARNED AN ITEM! " + "Item Name: " + selectedItem.ItemName);
         }
+        
+        IncreaseSpinCount();
     }
 
+    public List<WheelItem> GetAllEarnedItems() => _earnedItems;
+    public void EarnedItem_Add(WheelItem item) => _earnedItems.Add(item);
+    public void EarnedItem_Remove(WheelItem item) => _earnedItems.Remove(item);
+    public void EarnedItem_Clear() => _earnedItems.Clear();
     public int GetSpinCount() => _spinCount;
     public bool IsSpinning() => _isSpinning;
     public Spin GetCurrentSpin() => _currentSpin;

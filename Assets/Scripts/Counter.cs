@@ -59,13 +59,18 @@ public class Counter : MonoBehaviour
         PlayerPrefs.Save();
     }
     
-    private void ResetValue()
+    public void ResetValue()
     {
-        _value = 0;
+        _value = _startValue;
         UpdateDisplay();
         SaveValue();
     }
     
-    public void SetValue(int value) => _value = value;
+    public void SetValue(int value)
+    {
+        _value = value;
+        SaveValue();
+    }
+
     public int GetValue() => _value;
 }
