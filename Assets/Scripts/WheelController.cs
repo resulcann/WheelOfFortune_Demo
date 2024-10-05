@@ -32,14 +32,12 @@ public class WheelController : LocalSingleton<WheelController>
 
     public void Init()
     {
+        _spinBtn.onClick.AddListener(Spin);
+        
         LoadSpinCount();
         CounterManager.Instance.Init();
         SetSpinType();
-    }
-
-    private void Start()
-    {
-        _spinBtn.onClick.AddListener(Spin);
+        _currentSpin.Init();
     }
 
     private void OnDestroy()

@@ -14,7 +14,7 @@ public class Spin : MonoBehaviour
     [Space]
     [SerializeField] private WheelSlotSettings[] _wheelSlotsSettings;
 
-    private void Start()
+    public void Init()
     {
         SetItems();
     }
