@@ -25,7 +25,7 @@ public class Counter : MonoBehaviour
     {
         _counterText.text = _value >= 0 ? GameUtility.FormatFloatToReadableString(_value) : "";
 
-        if (CounterManager.Instance.GetCounters().IndexOf(this) is 2) return;
+        if (CounterManager.Instance.GetCounters().IndexOf(this) == CounterManager.Instance.GetCounters().Count / 2) return;
         
         if (_value % 30 == 0 && _value != 0)
         {

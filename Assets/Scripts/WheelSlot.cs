@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Resul.Helper;
 using TMPro;
 using UnityEngine;

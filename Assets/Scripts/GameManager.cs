@@ -64,21 +64,21 @@ public class GameManager : LocalSingleton<GameManager>
         }
     }
 
-    // Spin sonucunda kazanılan item'ı listeye ekle.
+    // Spin sonucunda kazanılan itemı listeye ekle.
     public void AddEarnedItem(WheelItem item)
     {
         _earnedItems.Add(item);
         Debug.Log("Added item: " + item.ItemName);
     }
 
-    // Spin sonucunda kazanılan cash'i ekle.
+    // Spin sonucunda kazanılan cashi ekle.
     public void AddEarnedCash(int amount)
     {
         _earnedCash += amount;
         Debug.Log("Earned cash: " + amount);
     }
 
-    // Kazanılan item'ları ve cash'leri sıfırlar.
+    // Kazanılan itemları ve cashleri sıfırlar.
     public void DiscardAllEarnings()
     {
         if (_earnedItems.Count > 0)

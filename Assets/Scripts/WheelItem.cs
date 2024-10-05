@@ -3,8 +3,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewItem", menuName = "Wheel/Item", order = 1)]
 public class WheelItem : ScriptableObject
 {
-    [SerializeField] private string _itemName;  // Eşya ismi
-    [SerializeField] private Sprite _itemSprite;  // Eşya görseli
+    [SerializeField] private string _itemName;
+    [SerializeField] private Sprite _itemSprite; 
     [SerializeField] private bool _isBomb = false;
 
     // Getter, Setters

@@ -29,7 +29,7 @@ public class CounterManager : LocalSingleton<CounterManager>
         WheelController.OnSpinCompleted -= UpdateCounters;
     }
 
-    public void UpdateCounters()
+    private void UpdateCounters()
     {
         if (_punchAnimationCor != null) StopCoroutine(_punchAnimationCor);
         _punchAnimationCor = StartCoroutine(UpdateCountersWithPunch(0.35f, 0.1f));
@@ -40,7 +40,7 @@ public class CounterManager : LocalSingleton<CounterManager>
         var spinCount = WheelController.Instance.GetSpinCount();
         for (var i = 0; i < _counters.Count; i++)
         {
-            var value = spinCount - 2 + i;
+            var value = spinCount - (_counters.Count / 2) + i;
             if (value >= 0)
             {
                 _counters[i].SetValue(value);
@@ -58,7 +58,7 @@ public class CounterManager : LocalSingleton<CounterManager>
         var spinCount = WheelController.Instance.GetSpinCount(); 
         for (var i = 0; i < _counters.Count; i++)
         {
-            var value = spinCount - 2 + i;
+            var value = spinCount - (_counters.Count / 2) + i;
             if (value >= 0)
             {
                 _counters[i].SetValue(value);

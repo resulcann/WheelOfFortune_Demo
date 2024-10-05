@@ -13,7 +13,12 @@ public class Spin : MonoBehaviour
     
     [Space]
     [SerializeField] private WheelSlotSettings[] _wheelSlotsSettings;
-    
+
+    private void Start()
+    {
+        SetItems();
+    }
+
     private void OnValidate()
     {
         SetItems();
